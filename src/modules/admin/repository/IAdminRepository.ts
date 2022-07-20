@@ -1,3 +1,1 @@
-interface IAdminRepository {
-
-}
+interface IAdminRepository {}
