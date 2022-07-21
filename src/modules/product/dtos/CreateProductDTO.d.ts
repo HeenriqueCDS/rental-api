@@ -1,6 +1,4 @@
-import { Base } from "../../Base";
-
-class Product extends Base {
+export interface ICreateProductDTO {
   name: string;
   details: string;
   brand: string;
@@ -8,5 +6,3 @@ class Product extends Base {
   purchase_price: number;
   weight: number;
 }
-
-export { Product };
