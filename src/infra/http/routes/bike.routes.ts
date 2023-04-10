@@ -1,21 +1,11 @@
 import { Router } from "express";
 
-import { BikeService } from "../../services/bike-service";
+import { createBike, getBikes } from "../controllers/bike-controller";
 
 const bikeRouter = Router();
 
-const bikeService = new BikeService();
+bikeRouter.get("/", getBikes);
 
-bikeRouter.get("/", async (request, response) => {
-  const bikes = await bikeService.findAll();
-  return response.json(bikes);
-});
-
-bikeRouter.post("/", (request, response) => {
-  const { stationId } = request.body;
-  const bike = bikeService.create(stationId);
-
-  return response.json(bike);
-});
+bikeRouter.post("/", createBike);
 
 export { bikeRouter };

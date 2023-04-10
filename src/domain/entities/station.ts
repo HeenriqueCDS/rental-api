@@ -8,12 +8,12 @@ class Station {
   address: string;
   latitude: number;
   longitude: number;
-  created_at: Date;
-  updated_at?: Date | null;
+  createdAt: Date;
+  updatedAt?: Date | null;
 
   constructor() {
     this.id = this.id ?? uuid();
-    this.created_at = this.created_at ?? new Date();
+    this.createdAt = this.createdAt ?? new Date();
   }
 }
 

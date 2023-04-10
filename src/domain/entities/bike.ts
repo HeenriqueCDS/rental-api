@@ -1,18 +1,18 @@
 import { v4 as uuid } from "uuid";
 
-import { Status } from "../../types/status.enum";
-
 class Bike {
   id: string;
+  name: string;
   stationId: string;
-  status: Status;
-  created_at: Date;
-  updated_at?: Date | null;
+  status: string;
+  createdAt: Date;
+  updatedAt?: Date | null;
 
-  constructor(stationId: string) {
+  constructor({ stationId, name }: { stationId: string; name: string }) {
     this.stationId = this.stationId ?? stationId;
+    this.name = this.name ?? name;
     this.id = this.id ?? uuid();
-    this.created_at = this.created_at ?? new Date();
+    this.createdAt = this.createdAt ?? new Date();
   }
 }
 

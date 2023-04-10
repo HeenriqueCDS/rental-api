@@ -1,10 +1,15 @@
+import { ICreateBikeDTO } from "../../domain/dtos/create-bike-dto";
 import { Bike } from "../../domain/entities/bike";
 import { IBikeRepository } from "../../domain/repositories/bike-repository";
 import { IBikeService } from "../../domain/services/bike-service";
-import { BikeRepository } from "../database/repositories/bike-repository";
 
 class BikeService implements IBikeService {
-  repository: IBikeRepository = new BikeRepository();
+  repository: IBikeRepository;
+
+  constructor(respository: IBikeRepository) {
+    this.repository = respository;
+  }
+
   async findAll(): Promise<Bike[]> {
     return this.repository.findAll();
   }
@@ -15,8 +20,8 @@ class BikeService implements IBikeService {
 
     return bike;
   }
-  async create(stationId: string): Promise<void> {
-    const bike = new Bike(stationId);
+  async create({ stationId, name }: ICreateBikeDTO): Promise<void> {
+    const bike = new Bike({ stationId, name });
     this.repository.save(bike);
   }
   async update(entity: Bike): Promise<void> {

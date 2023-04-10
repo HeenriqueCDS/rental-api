@@ -1,25 +1,32 @@
+import { PrismaClient } from "@prisma/client";
+
 import { Bike } from "../../../domain/entities/bike";
 import { IBikeRepository } from "../../../domain/repositories/bike-repository";
 
 class BikeRepository implements IBikeRepository {
-  private bikes: Bike[] = [];
+  private client: PrismaClient;
+
+  constructor(client: PrismaClient) {
+    this.client = client;
+  }
 
   async findById(id: string): Promise<Bike> {
-    const bike = this.bikes.find((bike) => bike.id === id);
+    const bike = await this.client.bike.findFirst({ where: { id } });
     return bike;
   }
   async findAll(): Promise<Bike[]> {
-    console.log(this.bikes);
-    return this.bikes;
+    const bikes = await this.client.bike.findMany();
+    return bikes;
   }
   async save(entity: Bike): Promise<void> {
-    this.bikes.push(entity);
+    await this.client.bike.create({ data: entity });
   }
   async delete(id: string): Promise<void> {
-    this.bikes = this.bikes.filter((bike) => bike.id !== id);
+    await this.client.bike.delete({ where: { id } });
   }
   async findByStationId(stationId: string): Promise<Bike[]> {
-    return this.bikes.filter((bike) => bike.stationId === stationId);
+    const bikes = await this.client.bike.findMany({ where: { stationId } });
+    return bikes;
   }
 }
 
