@@ -3,7 +3,7 @@ import { Request, Response } from "express";
 import { AppError } from "../../../errors/app-error";
 import prisma from "../../database/client";
 import { BikeRepository } from "../../database/repositories/bike-repository";
-import { BikeService } from "../../services/bike-service";
+import { BikeService } from "../../../domain/services/bike-service";
 
 const repository = new BikeRepository(prisma);
 const service = new BikeService(repository);
