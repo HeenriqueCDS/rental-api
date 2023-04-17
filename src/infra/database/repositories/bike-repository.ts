@@ -21,6 +21,14 @@ class BikeRepository implements IBikeRepository {
   async save(entity: Bike): Promise<void> {
     await this.client.bike.create({ data: entity });
   }
+
+  async update(entity: Bike): Promise<void> {
+    await this.client.bike.update({
+      where: { id: entity.id },
+      data: entity,
+    });
+  }
+
   async delete(id: string): Promise<void> {
     await this.client.bike.delete({ where: { id } });
   }

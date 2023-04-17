@@ -1,27 +1,21 @@
 import { Request, Response } from "express";
 
+import { BikeService } from "../../../domain/services/bike-service";
 import { AppError } from "../../../errors/app-error";
 import prisma from "../../database/client";
 import { BikeRepository } from "../../database/repositories/bike-repository";
-import { BikeService } from "../../../domain/services/bike-service";
+import { StationRepository } from "../../database/repositories/station-repository";
 
 const repository = new BikeRepository(prisma);
-const service = new BikeService(repository);
+const stationRepository = new StationRepository(prisma);
+const service = new BikeService(repository, stationRepository);
 
 const createBike = async (request: Request, response: Response) => {
   const { stationId, name } = request.body;
 
-  if (!stationId) {
-    throw new AppError("Missing stationId");
-  }
-
-  if (!name) {
-    throw new AppError("Missing name");
-  }
-
   await service.create({ stationId, name });
 
-  return response.send();
+  return response.status(201).send();
 };
 
 const getBikes = async (request: Request, response: Response) => {
