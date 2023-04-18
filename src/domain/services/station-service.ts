@@ -15,9 +15,6 @@ class StationService {
 
   async findById(id: string): Promise<Station> {
     const station = this.repository.findById(id);
-
-    if (!station) throw new Error("Bicicleta não encontrada");
-
     return station;
   }
   async create({
@@ -36,14 +33,19 @@ class StationService {
       longitude,
       name,
     });
-
     await this.repository.save(station);
   }
-  async update(entity: Station): Promise<void> {
-    this.repository.save(entity);
+  async update(id: string, entity: ICreateStationDTO): Promise<void> {
+    const station = await this.repository.findById(id);
+    if (!station) throw new Error("Estação não encontrada");
+    const updatedStation = Object.assign(station, entity);
+    await this.repository.update(updatedStation);
   }
   async delete(id: string): Promise<void> {
-    this.repository.delete(id);
+    const station = await this.repository.findById(id);
+    if (!station) throw new Error("Estação não encontrada");
+
+    await this.repository.delete(id);
   }
 }
 

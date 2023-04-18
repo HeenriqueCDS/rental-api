@@ -36,11 +36,25 @@ class BikeService {
     const bike = new Bike({ stationId, name });
     this.repository.save(bike);
   }
-  async update(entity: Bike): Promise<void> {
-    this.repository.save(entity);
+  async update(id: string, entity: ICreateBikeDTO): Promise<void> {
+    const bike = await this.repository.findById(id);
+    if (!bike) throw new AppError("Bicicleta não encontrada", 404);
+
+    if (entity.stationId) {
+      const stationExists = await this.stationRepository.findById(
+        entity.stationId
+      );
+      if (!stationExists) throw new AppError("Estação não encontrada", 404);
+    }
+
+    const updatedBike = Object.assign(bike, entity);
+    await this.repository.update(updatedBike);
   }
   async delete(id: string): Promise<void> {
-    this.repository.delete(id);
+    const bike = await this.repository.findById(id);
+    if (!bike) throw new AppError("Bicicleta não encontrada", 404);
+
+    await this.repository.delete(id);
   }
   async findByStationId(stationId: string): Promise<Bike[]> {
     return this.repository.findByStationId(stationId);

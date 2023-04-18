@@ -9,19 +9,25 @@ class StationRepository implements IStationRepository {
   constructor(client: PrismaClient) {
     this.client = client;
   }
-  findById(id: string): Promise<Station> {
-    const station = this.client.station.findFirst({ where: { id } });
+  async update(entity: Station): Promise<void> {
+    await this.client.station.update({
+      where: { id: entity.id },
+      data: { ...entity, updatedAt: new Date() },
+    });
+  }
+  async findById(id: string): Promise<Station> {
+    const station = await this.client.station.findFirst({ where: { id } });
     return station;
   }
-  findAll(): Promise<Station[]> {
-    const stations = this.client.station.findMany();
+  async findAll(): Promise<Station[]> {
+    const stations = await this.client.station.findMany();
     return stations;
   }
   async save(entity: Station): Promise<void> {
     await this.client.station.create({ data: entity });
   }
-  delete(id: string): Promise<void> {
-    throw new Error("Method not implemented.");
+  async delete(id: string): Promise<void> {
+    await this.client.station.delete({ where: { id } });
   }
 }
 

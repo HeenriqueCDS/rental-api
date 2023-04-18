@@ -25,7 +25,7 @@ class BikeRepository implements IBikeRepository {
   async update(entity: Bike): Promise<void> {
     await this.client.bike.update({
       where: { id: entity.id },
-      data: entity,
+      data: { ...entity, updatedAt: new Date() },
     });
   }
 

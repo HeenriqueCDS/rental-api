@@ -1,11 +1,19 @@
 import { Router } from "express";
 
-import { createBike, getBikes } from "../controllers/bike-controller";
+import {
+  create,
+  findAll,
+  update,
+  findOne,
+  del,
+} from "../controllers/bike-controller";
 
-const bikeRouter = Router();
+const router = Router();
 
-bikeRouter.get("/", getBikes);
+router.post("/", create);
+router.put("/:id", update);
+router.get("/", findAll);
+router.get("/:id", findOne);
+router.delete("/:id", del);
 
-bikeRouter.post("/", createBike);
-
-export { bikeRouter };
+export { router as bikeRouter };

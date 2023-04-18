@@ -1,11 +1,19 @@
 import { Router } from "express";
 
-import { createStation, getStations } from "../controllers/station-controller";
+import {
+  create,
+  del,
+  findAll,
+  findOne,
+  update,
+} from "../controllers/station-controller";
 
-const stationRouter = Router();
+const router = Router();
 
-stationRouter.post("/", createStation);
+router.post("/", create);
+router.put("/:id", update);
+router.get("/", findAll);
+router.get("/:id", findOne);
+router.delete("/:id", del);
 
-stationRouter.get("/", getStations);
-
-export { stationRouter };
+export { router as stationRouter };
