@@ -10,11 +10,12 @@ class StationService {
   }
 
   async findAll(): Promise<Station[]> {
-    return this.repository.findAll();
+    const stations = await this.repository.findAll();
+    return stations;
   }
 
   async findById(id: string): Promise<Station> {
-    const station = this.repository.findById(id);
+    const station = await this.repository.findById(id);
     return station;
   }
   async create({

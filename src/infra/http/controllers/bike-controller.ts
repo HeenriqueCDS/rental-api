@@ -2,7 +2,6 @@ import { Request, Response } from "express";
 
 import { ICreateBikeDTO } from "../../../domain/dtos/create-bike-dto";
 import { BikeService } from "../../../domain/services/bike-service";
-import { StationService } from "../../../domain/services/station-service";
 import prisma from "../../database/client";
 import { BikeRepository } from "../../database/repositories/bike-repository";
 import { StationRepository } from "../../database/repositories/station-repository";
