@@ -36,12 +36,12 @@ Retorna um registro caso exista um com id especificado, caso o contrário o reto
 Cria uma nova estação,, para isso exige um body em formato JSON, retorna *201* 
 ```json
 {
-	"name": "Paulista",
-	"address": "Av. Paulista",
-	"description": "Estação de Bike da paulista",
-	"latitude": 0,
-	"longitude": 0,
-	"capacity": 50
+"name": "Paulista",
+"address": "Av. Paulista",
+"description": "Estação de Bike da paulista",
+"latitude": 0,
+"longitude": 0,
+"capacity": 50
 }
 ```
 > Método: POST
@@ -102,9 +102,9 @@ Retorna um registro caso exista um com id especificado, caso o contrário o reto
 Cria uma nova estação,, para isso exige um body em formato JSON, retorna *201* 
 ```json
 {
-	"name": "Nome do usário",
-	"email": "email@dousuario.com",
-  "password": "senhamuitoforte123"
+"name": "Nome do usário",
+"email": "email@dousuario.com",
+"password": "senhamuitoforte123"
 }
 ```
 > Método: POST
@@ -143,12 +143,12 @@ Cria uma nova estação, para isso exige um body em formato JSON, retorna *201*
 > Método: POST
 - **Update**
 Atualliza os dados de um registro, recebe o id do registro a ser alterado pela rota 
-``/users/ca7d3057-7ed9-4e79-ad43-255d65d3feb2``, o body é semelhante a requisição interior, mas os valores são opcionais sendo pelo menos um necessário, retorna *204*
+``/rentals/ca7d3057-7ed9-4e79-ad43-255d65d3feb2``, o body é semelhante a requisição interior, mas os valores são opcionais sendo pelo menos um necessário, retorna *204*
 > Método: PUT
 
 - **Delete**
 Deleta um registro da base, recebe o id do registro a ser deletado pela rota
-``/users/ca7d3057-7ed9-4e79-ad43-255d65d3feb2``
+``/rentals/ca7d3057-7ed9-4e79-ad43-255d65d3feb2``
 Retorna *204*
 > Método: DELETE
 
