@@ -41,12 +41,12 @@ model User {
 }
 
 model Rental {
-  id         String    @id @default(uuid())
-  bikeId     String
-  userId     String
-  createdAt  DateTime  @default(now())
-  updatedAt  DateTime? @updatedAt
-  start      DateTime?
-  previweEnd DateTime?
-  end        DateTime?
+  id           String    @id @default(uuid())
+  bikeId       String
+  userId       String
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime? @updatedAt
+  start        DateTime?
+  previewedEnd DateTime?
+  end          DateTime?
 }

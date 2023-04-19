@@ -10,6 +10,7 @@ const repository = new BikeRepository(prisma);
 const stationRepo = new StationRepository(prisma);
 const service = new BikeService(repository, stationRepo);
 
+// Tratamento de requisição e resposta
 const create = async (request: Request, response: Response) => {
   const { name, stationId }: ICreateBikeDTO = request.body;
 

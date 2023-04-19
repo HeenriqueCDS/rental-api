@@ -1,6 +1,6 @@
 import { v4 as uuid } from "uuid";
 
-import { IUserDTO } from "../dtos/create-user-dto";
+import { ICreateUserDTO } from "../dtos/create-user-dto";
 
 class User {
   id: string;
@@ -10,7 +10,7 @@ class User {
   createdAt: Date;
   updatedAt?: Date | null;
 
-  constructor({ email, name, password }: IUserDTO) {
+  constructor({ email, name, password }: ICreateUserDTO) {
     this.email = this.email ?? email;
     this.name = this.name ?? name;
     this.password = this.password ?? password;

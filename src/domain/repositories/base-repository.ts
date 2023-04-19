@@ -1,3 +1,4 @@
+// Contrato para implementação de um repositório
 interface IBaseRepository<T> {
   findById(id: string): Promise<T>;
 

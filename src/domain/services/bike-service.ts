@@ -4,9 +4,10 @@ import { Bike } from "../entities/bike";
 import { IBikeRepository } from "../repositories/bike-repository";
 import { IStationRepository } from "../repositories/station-repository";
 
+// Lógica de negócio
 class BikeService {
-  repository: IBikeRepository;
-  stationRepository: IStationRepository;
+  private repository: IBikeRepository;
+  private stationRepository: IStationRepository;
 
   constructor(
     respository: IBikeRepository,
@@ -58,7 +59,8 @@ class BikeService {
   }
 
   async findByStationId(stationId: string): Promise<Bike[]> {
-    return this.repository.findByStationId(stationId);
+    const bikes = await this.repository.findByStationId(stationId);
+    return bikes;
   }
 }
 

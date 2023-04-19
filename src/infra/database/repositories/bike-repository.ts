@@ -3,6 +3,8 @@ import { PrismaClient } from "@prisma/client";
 import { Bike } from "../../../domain/entities/bike";
 import { IBikeRepository } from "../../../domain/repositories/bike-repository";
 
+// Implementação do repositório de bicicletas
+// Comunicação com o banco de dados
 class BikeRepository implements IBikeRepository {
   private client: PrismaClient;
 

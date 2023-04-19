@@ -1,3 +1,4 @@
+import { AppError } from "../../errors/app-error";
 import { ICreateStationDTO } from "../dtos/create-station-dto";
 import { Station } from "../entities/station";
 import { IStationRepository } from "../repositories/station-repository";
@@ -38,13 +39,13 @@ class StationService {
   }
   async update(id: string, entity: ICreateStationDTO): Promise<void> {
     const station = await this.repository.findById(id);
-    if (!station) throw new Error("Estação não encontrada");
+    if (!station) throw new AppError("Estação não encontrada");
     const updatedStation = Object.assign(station, entity);
     await this.repository.update(updatedStation);
   }
   async delete(id: string): Promise<void> {
     const station = await this.repository.findById(id);
-    if (!station) throw new Error("Estação não encontrada");
+    if (!station) throw new AppError("Estação não encontrada");
 
     await this.repository.delete(id);
   }
