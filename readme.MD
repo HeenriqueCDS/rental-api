@@ -20,7 +20,7 @@ npx prisma migrate dev
 npx prisma generate
 npm run dev
 ```
-É previsto que a api rode tranquilamente em ambiente de desenvolvimento com após esses comandos
+É previsto que a api rode tranquilamente em ambiente de desenvolvimento com após esses comandos, caso você tenha um erro do prisma com o ```DATABASE_URL``` basta apenas adicionar a varíavel ```DATABASE_URL=file:./dev.db``` no arquivo **.env** na pasta raíz do projeto
 # Rotas da API
 ## /stations
 - **Find all**
